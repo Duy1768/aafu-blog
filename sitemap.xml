@@ -2,44 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/blog/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/java-bien-va-kieu-du-lieu/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/java-bien-va-kieu-du-lieu/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/js-loops/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/js-loops/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/java-cau-lenh-dieu-kien/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/java-cau-lenh-dieu-kien/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/java-functions/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/java-functions/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/js-functions/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/js-functions/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/js-primitive-vs-reference/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/js-primitive-vs-reference/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/java-classes-objects/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/java-classes-objects/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/js-conditionals-optimization/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/js-conditionals-optimization/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/java-vong-lap-while/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/blog/java-vong-lap-while/</loc>
     <lastmod>2025-10-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/search/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/search/</loc>
     <lastmod>2024-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/categories/</loc>
   </url><url>
-    <loc>/tags/</loc>
+    <loc>https://duy1768.github.io/aafu-blog/tags/</loc>
   </url>
 </urlset>

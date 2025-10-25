@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Lê Bảo Duy - Trang cá nhân</title>
-    <link>/blog/</link>
+    <link>https://duy1768.github.io/aafu-blog/blog/</link>
     <description>Recent content in Blog on Lê Bảo Duy - Trang cá nhân</description>
     <generator>Hugo</generator>
     <language>vi-vn</language>
     <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://duy1768.github.io/aafu-blog/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Biến và kiểu dữ liệu trong Java</title>
-      <link>/blog/java-bien-va-kieu-du-lieu/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/java-bien-va-kieu-du-lieu/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/java-bien-va-kieu-du-lieu/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/java-bien-va-kieu-du-lieu/</guid>
       <description>&lt;h1 id=&#34;biến-và-kiểu-dữ-liệu-trong-java&#34;&gt;Biến và kiểu dữ liệu trong Java&lt;/h1&gt;&#xA;&lt;p&gt;Trong java, biến là tên của vùng nhớ được lưu trong bộ nhớ stack. Có 3 kiểu biến trong java, bao gồm biến cục bộ (local), biến toàn cục (instance) và biến tĩnh (static).&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-biến-local-trong-java&#34;&gt;1. Biến local trong Java&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Khai báo trong phương thức, constructor hoặc block&lt;/li&gt;&#xA;&lt;li&gt;Tồn tại trong phạm vi phương thức/block&lt;/li&gt;&#xA;&lt;li&gt;Không dùng access modifier&lt;/li&gt;&#xA;&lt;li&gt;Nằm trên stack&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sayHello&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 10;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    System.&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gia tri cua n la: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; n);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Chú ý: Nếu không khởi tạo giá trị, biến local sẽ báo lỗi khi biên dịch.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Các loại vòng lặp trong JavaScript</title>
-      <link>/blog/js-loops/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/js-loops/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/js-loops/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/js-loops/</guid>
       <description>&lt;h1 id=&#34;các-loại-vòng-lặp-trong-javascript&#34;&gt;Các loại vòng lặp trong JavaScript&lt;/h1&gt;&#xA;&lt;p&gt;Vòng lặp là một thành phần quan trọng trong lập trình, giúp lặp lại các thao tác nhiều lần. Trong JavaScript, bạn có nhiều loại vòng lặp khác nhau từ cơ bản đến nâng cao. Bài viết này sẽ giới thiệu chi tiết từng loại và ví dụ minh họa.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-for-loop&#34;&gt;1. For Loop&lt;/h2&gt;&#xA;&lt;p&gt;Vòng lặp &lt;code&gt;for&lt;/code&gt; phổ biến nhất trong nhiều ngôn ngữ lập trình, dễ dàng kiểm soát biến đếm, điều kiện và bước nhảy.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Câu lệnh điều kiện trong Java</title>
-      <link>/blog/java-cau-lenh-dieu-kien/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/java-cau-lenh-dieu-kien/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/java-cau-lenh-dieu-kien/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/java-cau-lenh-dieu-kien/</guid>
       <description>&lt;h1 id=&#34;câu-lệnh-điều-kiện-trong-java&#34;&gt;Câu lệnh điều kiện trong Java&lt;/h1&gt;&#xA;&lt;p&gt;Trong lập trình Java, đôi khi chúng ta cần thực hiện các hành động dựa trên điều kiện nhất định. Những câu lệnh này được gọi là &lt;strong&gt;câu lệnh điều kiện&lt;/strong&gt; hay &lt;strong&gt;câu lệnh rẽ nhánh&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Trong Java, có hai cách chính để xử lý điều kiện:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;if-else&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;switch-case&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-câu-lệnh-if-else&#34;&gt;1. Câu lệnh if-else&lt;/h2&gt;&#xA;&lt;h3 id=&#34;a-câu-lệnh-if&#34;&gt;a. Câu lệnh if&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Thực thi code bên trong nếu điều kiện trả về &lt;code&gt;true&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; number &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 10;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (number &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; 10) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    System.&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;number nhỏ hơn hoặc bằng %d&amp;#34;&lt;/span&gt;, number);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Output: number nhỏ hơn hoặc bằng 10&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;b-câu-lệnh-if-else&#34;&gt;b. Câu lệnh if-else&lt;/h3&gt;&#xA;&lt;p&gt;Nếu điều kiện if sai, thực thi else&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hàm trong Java</title>
-      <link>/blog/java-functions/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/java-functions/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/java-functions/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/java-functions/</guid>
       <description>&lt;h1 id=&#34;hàm-trong-java-phần-1&#34;&gt;Hàm trong Java (Phần 1)&lt;/h1&gt;&#xA;&lt;p&gt;Trong ngôn ngữ lập trình Java, một &lt;strong&gt;hàm (function)&lt;/strong&gt; là một khối code chứa một tập hợp các câu lệnh được đặt tên và thực hiện một nhiệm vụ cụ thể. Hàm giúp &lt;strong&gt;tái sử dụng code&lt;/strong&gt;, tạo cấu trúc rõ ràng và dễ quản lý trong các ứng dụng phức tạp.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-ví-dụ-giới-thiệu-về-hàm&#34;&gt;1. Ví dụ giới thiệu về hàm&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;HelloWorld&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// Hàm đơn giản in ra &amp;#34;Hello, world!&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;printHello&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        System.&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, world!&amp;#34;&lt;/span&gt;);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(String&lt;span style=&#34;color:#f92672&#34;&gt;[]&lt;/span&gt; args) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// Gọi hàm printHello&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printHello();&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;trong-ví-dụ-trên&#34;&gt;Trong ví dụ trên:&lt;/h3&gt;&#xA;&lt;p&gt;Hàm printHello được khai báo với public static void.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hàm trong JavaScript: Định nghĩa, Tham số và Giá trị trả về</title>
-      <link>/blog/js-functions/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/js-functions/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/js-functions/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/js-functions/</guid>
       <description>&lt;h1 id=&#34;hàm-trong-javascript&#34;&gt;Hàm trong JavaScript&lt;/h1&gt;&#xA;&lt;p&gt;Hàm là một &lt;strong&gt;khối mã có thể tái sử dụng&lt;/strong&gt; và thực hiện một tác vụ cụ thể trong chương trình. Trong JavaScript, hàm là &lt;strong&gt;một đối tượng&lt;/strong&gt; có thể nhận dữ liệu đầu vào và trả về kết quả.&lt;/p&gt;&#xA;&lt;p&gt;Sử dụng hàm giúp:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tái sử dụng mã nguồn.&lt;/li&gt;&#xA;&lt;li&gt;Tổ chức code gọn gàng, dễ đọc.&lt;/li&gt;&#xA;&lt;li&gt;Dễ bảo trì và mở rộng.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-hàm-trong-javascript-là-gì&#34;&gt;1. Hàm trong JavaScript là gì?&lt;/h2&gt;&#xA;&lt;p&gt;Hàm là một &lt;strong&gt;khối mã được đặt tên&lt;/strong&gt;, có thể tái sử dụng và thực thi nhiều lần. Nó có thể chứa các lệnh và tham số để thực hiện một tác vụ nào đó.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu</title>
-      <link>/blog/js-primitive-vs-reference/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/js-primitive-vs-reference/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/js-primitive-vs-reference/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/js-primitive-vs-reference/</guid>
       <description>&lt;h1 id=&#34;kiểu-dữ-liệu-nguyên-thủy-và-kiểu-dữ-liệu-tham-chiếu&#34;&gt;Kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu&lt;/h1&gt;&#xA;&lt;p&gt;Trong JavaScript, biến lưu trữ hai loại dữ liệu cơ bản: &lt;strong&gt;kiểu nguyên thủy&lt;/strong&gt; và &lt;strong&gt;kiểu tham chiếu&lt;/strong&gt;. Hiểu rõ sự khác biệt giữa hai loại này là điều cần thiết để quản lý bộ nhớ và kiểm soát việc chia sẻ, lưu trữ và thay đổi dữ liệu.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-kiểu-nguyên-thủy-primitive-types&#34;&gt;1. Kiểu nguyên thủy (Primitive Types)&lt;/h2&gt;&#xA;&lt;p&gt;Kiểu dữ liệu đơn giản nhất được gọi là &lt;strong&gt;kiểu nguyên thủy&lt;/strong&gt;. Chúng lưu trữ trực tiếp dữ liệu không thay đổi trong biến. Các kiểu nguyên thủy mà JavaScript hỗ trợ:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Lớp và đối tượng trong Java</title>
-      <link>/blog/java-classes-objects/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/java-classes-objects/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/java-classes-objects/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/java-classes-objects/</guid>
       <description>&lt;h1 id=&#34;lớp-và-đối-tượng-trong-java&#34;&gt;Lớp và đối tượng trong Java&lt;/h1&gt;&#xA;&lt;p&gt;Trong lập trình hướng đối tượng (&lt;strong&gt;OOPs&lt;/strong&gt;) trong Java, chúng ta thiết kế chương trình bằng cách sử dụng &lt;strong&gt;lớp (class)&lt;/strong&gt; và &lt;strong&gt;đối tượng (object)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-đối-tượng-object&#34;&gt;1. Đối tượng (Object)&lt;/h2&gt;&#xA;&lt;p&gt;Một &lt;strong&gt;đối tượng&lt;/strong&gt; là một thực thể có trạng thái và hành vi. Ví dụ: máy pha cà phê, xe đạp, quạt,…&lt;/p&gt;&#xA;&lt;h3 id=&#34;các-đặc-điểm-chính-của-đối-tượng&#34;&gt;Các đặc điểm chính của đối tượng:&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Trạng thái (State):&lt;/strong&gt; đại diện cho dữ liệu của đối tượng (ví dụ: màu sắc, tên, giá trị).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Hành vi (Behavior):&lt;/strong&gt; đại diện cho các chức năng mà đối tượng có thể thực hiện (ví dụ: gửi tiền, rút tiền).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Danh tính (Identity):&lt;/strong&gt; mỗi đối tượng có một ID duy nhất để phân biệt với các đối tượng khác trong JVM.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Ví dụ: Một cây bút chì có tên là A, màu trắng là &lt;strong&gt;trạng thái&lt;/strong&gt;, còn việc sử dụng bút để viết là &lt;strong&gt;hành vi&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tối ưu câu lệnh điều kiện dễ đọc hơn trong JavaScript</title>
-      <link>/blog/js-conditionals-optimization/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/js-conditionals-optimization/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/js-conditionals-optimization/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/js-conditionals-optimization/</guid>
       <description>&lt;h1 id=&#34;tối-ưu-câu-lệnh-điều-kiện-dễ-đọc-hơn-trong-javascript&#34;&gt;Tối ưu câu lệnh điều kiện dễ đọc hơn trong JavaScript&lt;/h1&gt;&#xA;&lt;p&gt;Một trong những công cụ mạnh mẽ và được sử dụng nhiều nhất trong lập trình là &lt;strong&gt;câu lệnh điều kiện&lt;/strong&gt;, giúp chạy các nhánh code chỉ khi điều kiện thỏa mãn. Trong JavaScript, có 3 loại câu lệnh điều kiện chính:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;if/else&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;switch&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Biểu thức điều kiện (&lt;code&gt;ternary operator&lt;/code&gt;)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Nếu không được tối ưu, các câu lệnh điều kiện dễ gây lỗi và khó đọc. Dưới đây là một số cách tối ưu giúp code của bạn gọn gàng và dễ bảo trì hơn.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vòng lặp trong Java</title>
-      <link>/blog/java-vong-lap-while/</link>
+      <link>https://duy1768.github.io/aafu-blog/blog/java-vong-lap-while/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/blog/java-vong-lap-while/</guid>
+      <guid>https://duy1768.github.io/aafu-blog/blog/java-vong-lap-while/</guid>
       <description>&lt;h1 id=&#34;vòng-lặp-trong-java&#34;&gt;Vòng lặp trong Java&lt;/h1&gt;&#xA;&lt;p&gt;Trong lập trình Java, vòng lặp (&lt;strong&gt;loop&lt;/strong&gt;) là một cấu trúc quan trọng giúp thực hiện một chuỗi các câu lệnh lặp đi lặp lại một số lần hoặc cho đến khi một điều kiện cụ thể thỏa mãn. Vòng lặp giúp tối ưu hóa việc lặp lại một tập hợp các hành động, giảm sự trùng lặp code và làm cho chương trình trở nên mạch lạc và hiệu quả hơn.&lt;/p&gt;</description>
     </item>
   </channel>
