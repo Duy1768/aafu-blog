@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="vi-vn" class="m-auto  dark "><head>
+  
+  <title>Lớp và đối tượng trong Java - Lê Bảo Duy - Trang cá nhân</title>
+  
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta name="theme-color" content="" />
+  <meta name="description" content="Trang cá nhân &amp; dự án của Lê Bảo Duy" />
+  <meta name="author" content="Lê Bảo Duy" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="/main.min.861eea9874973f8444be483793e0ca0c2702acf41be407874da62d3de1e663a7.css"
+    integrity="sha256-hh7qmHSXP4REvkg3k&#43;DKDCcCrPQb5AeHTaYtPeHmY6c="
+    crossorigin="anonymous"
+  />
+   
+
+  <style>
+     
+    html {
+      touch-action: manipulation;
+      scroll-behavior: smooth;
+    }
+
+    .panel {
+      max-height: 0;
+      transition: 0.3s ease-out;
+    }
+
+    .profile-photo-container {
+      img {
+        max-width: 100%;
+      }
+    }
+     
+    .pagefind-ui__search-input {
+      color: black;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .pagefind-ui__search-clear {
+      display: none;
+    }
+    .dark .pagefind-ui__search-input {
+      color: white;
+      background-color: #322d2d;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .dark .pagefind-ui__search-input::placeholder {
+      color: #8f8f8f;
+    }
+    .chevron {
+      transition: 300ms linear rotate;
+    }
+    .active > .chevron {
+      transform: rotate(90deg);
+    }
+  </style>
+
+  <script>
+    const expandAccordion = (elem) => {
+      const allPanels = Array.from(document.querySelectorAll(".panel"));
+      const allAccordion = Array.from(document.querySelectorAll(".accordion"));
+
+      if (!elem.parentElement.classList.contains("active")) {
+        allAccordion.forEach((acc) => {
+          acc.classList.remove("active");
+        });
+        elem.parentElement.classList.add("active");
+        allPanels.forEach(function (elem) {
+          elem.style.maxHeight = null;
+        });
+        let activePanel = elem.parentElement.nextElementSibling;
+        if (
+          activePanel.id != "skill-panel" &&
+          document.querySelector("#skill-panel")
+        ) {
+          let skillBars = Array.from(
+            document.querySelectorAll("#skill-percent")
+          );
+          skillBars.forEach((elem) => {
+            elem.style.width = "0";
+          });
+        }
+        activePanel.style.maxHeight = activePanel.scrollHeight + "px";
+      }
+    };
+  </script>
+
+  <script>
+    let html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+
+    const setTheme = (theme) => {
+      html.classList.remove("light");
+      if (theme === "dark") {
+        html.classList.add("dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        html.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
+      }
+      fixThemeToggleIcon(theme);
+    };
+
+    const fixThemeToggleIcon = (theme) => {
+      let themeToggle = document.querySelector(".theme-toggle");
+      if (themeToggle) {
+        if (theme === "dark") {
+          themeToggle.classList.remove("fa-moon");
+          themeToggle.classList.add("fa-sun");
+        } else {
+          themeToggle.classList.remove("fa-sun");
+          themeToggle.classList.add("fa-moon");
+        }
+      }
+    };
+
+    if (theme == null) {
+      if (html.classList.contains("dark")) {
+        theme = "dark";
+      } else if (html.classList.contains("light")) {
+        theme = "light";
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        if (prefersDark) {
+          theme = "dark";
+        } else {
+          theme = "light";
+        }
+      }
+    }
+
+    setTheme(theme);
+
+    const toggleTheme = () => {
+      html.classList.contains("dark") ? setTheme("light") : setTheme("dark");
+    };
+
+    window.onload = () => {
+      fixThemeToggleIcon(theme);
+
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="h-screen p-2 m-auto max-w-4xl flex flex-col">
+    
+    <header
+  class="nav flex flex-row row py-2 mb-6 w-full border-b border-gray-700 dark:border-gray-300 justify-between"
+>
+  <div>
+    <a class="nav-menu-item" href="/">Home</a>
+    <a class="nav-menu-item" href="/blog">Blog</a>
+  </div>
+  <div>
+    <a class="mr-4" href="/search">
+      <i class="fas fa-search"></i>
+    </a>
+    <i
+      class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+      onclick="toggleTheme()"
+    ></i>
+  </div>
+</header>
+
+
+
+    
+    <main class="grow">
+
+<div class="prose prose-stone dark:prose-invert max-w-none">
+<div class="mb-3">
+  <h1 class="top-h1">Lớp và đối tượng trong Java</h1>
+  <p class="mb-1">October 24, 2025</p>
+  <p>&mdash;</p>
+</div>
+<div class="content">
+  <h1 id="lớp-và-đối-tượng-trong-java">Lớp và đối tượng trong Java</h1>
+<p>Trong lập trình hướng đối tượng (<strong>OOPs</strong>) trong Java, chúng ta thiết kế chương trình bằng cách sử dụng <strong>lớp (class)</strong> và <strong>đối tượng (object)</strong>.</p>
+<hr>
+<h2 id="1-đối-tượng-object">1. Đối tượng (Object)</h2>
+<p>Một <strong>đối tượng</strong> là một thực thể có trạng thái và hành vi. Ví dụ: máy pha cà phê, xe đạp, quạt,…</p>
+<h3 id="các-đặc-điểm-chính-của-đối-tượng">Các đặc điểm chính của đối tượng:</h3>
+<ul>
+<li><strong>Trạng thái (State):</strong> đại diện cho dữ liệu của đối tượng (ví dụ: màu sắc, tên, giá trị).</li>
+<li><strong>Hành vi (Behavior):</strong> đại diện cho các chức năng mà đối tượng có thể thực hiện (ví dụ: gửi tiền, rút tiền).</li>
+<li><strong>Danh tính (Identity):</strong> mỗi đối tượng có một ID duy nhất để phân biệt với các đối tượng khác trong JVM.</li>
+</ul>
+<blockquote>
+<p>Ví dụ: Một cây bút chì có tên là A, màu trắng là <strong>trạng thái</strong>, còn việc sử dụng bút để viết là <strong>hành vi</strong>.</p>
+</blockquote>
+<p><strong>Lưu ý:</strong> Đối tượng là <strong>thể hiện (instance)</strong> của một lớp.</p>
+<hr>
+<h2 id="2-lớp-class">2. Lớp (Class)</h2>
+<p>Một <strong>lớp</strong> là khuôn mẫu hoặc thiết kế từ đó các đối tượng được tạo ra. Một lớp có thể chứa:</p>
+<ul>
+<li><strong>Thành viên dữ liệu</strong> (fields)</li>
+<li><strong>Constructor</strong> (hàm khởi tạo)</li>
+<li><strong>Phương thức</strong> (methods)</li>
+<li><strong>Khối lệnh</strong> (blocks)</li>
+<li><strong>Interface</strong> (nếu cần)</li>
+</ul>
+<hr>
+<h2 id="3-ví-dụ-về-lớp-và-đối-tượng">3. Ví dụ về lớp và đối tượng</h2>
+<h3 id="ví-dụ-1-lớp-student-với-dữ-liệu-mặc-định">Ví dụ 1: Lớp Student với dữ liệu mặc định</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id; <span style="color:#75715e">// thành viên dữ liệu</span>
+</span></span><span style="display:flex;"><span>    String name; <span style="color:#75715e">// thành viên dữ liệu</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>) {
+</span></span><span style="display:flex;"><span>        Student student1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student(); <span style="color:#75715e">// tạo đối tượng student1</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(student1.<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(student1.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Kết quả:
+</span></span><span style="display:flex;"><span>0
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">null</span>
+</span></span></code></pre></div><h3 id="ví-dụ-2-lớp-student2-với-phương-thức">Ví dụ 2: Lớp Student2 với phương thức</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>    String name;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertRecord</span>(<span style="color:#66d9ef">int</span> id, String name) { 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">displayInformation</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(id <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>) {
+</span></span><span style="display:flex;"><span>        Student2 s1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student2();
+</span></span><span style="display:flex;"><span>        Student2 s2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student2();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        s1.<span style="color:#a6e22e">insertRecord</span>(111, <span style="color:#e6db74">&#34;Viet&#34;</span>);
+</span></span><span style="display:flex;"><span>        s2.<span style="color:#a6e22e">insertRecord</span>(222, <span style="color:#e6db74">&#34;Tuts&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        s1.<span style="color:#a6e22e">displayInformation</span>();
+</span></span><span style="display:flex;"><span>        s2.<span style="color:#a6e22e">displayInformation</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Kết quả:
+</span></span><span style="display:flex;"><span>111 Viet
+</span></span><span style="display:flex;"><span>222 Tuts
+</span></span></code></pre></div><h3 id="ví-dụ-3-lớp-student3-với-constructor">Ví dụ 3: Lớp Student3 với Constructor</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student3</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>    String name;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student3</span>(<span style="color:#66d9ef">int</span> id, String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">displayInformation</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(id <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>) {
+</span></span><span style="display:flex;"><span>        Student3 s1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student3(111, <span style="color:#e6db74">&#34;Viet&#34;</span>);
+</span></span><span style="display:flex;"><span>        Student3 s2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student3(222, <span style="color:#e6db74">&#34;Tuts&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        s1.<span style="color:#a6e22e">displayInformation</span>();
+</span></span><span style="display:flex;"><span>        s2.<span style="color:#a6e22e">displayInformation</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Kết quả:
+</span></span><span style="display:flex;"><span>111 Viet
+</span></span><span style="display:flex;"><span>222 Tuts
+</span></span></code></pre></div><h2 id="4-các-cách-tạo-đối-tượng-trong-java">4. Các cách tạo đối tượng trong Java</h2>
+<p>Sử dụng từ khóa new</p>
+<p>Sử dụng phương thức newInstance()</p>
+<p>Sử dụng phương thức clone()</p>
+<p>Sử dụng phương thức factory</p>
+<p>Các cách tạo đối tượng nâng cao sẽ được học trong các bài sau.</p>
+<h2 id="5-đối-tượng-annonymous-vô-danh">5. Đối tượng Annonymous (Vô danh)</h2>
+<p>Annonymous nghĩa là vô danh – đối tượng không có tham chiếu. Thường dùng khi chỉ cần sử dụng đối tượng một lần duy nhất.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Calculation</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fact</span>(<span style="color:#66d9ef">int</span> n) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> giaithua <span style="color:#f92672">=</span> 1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            giaithua <span style="color:#f92672">=</span> giaithua <span style="color:#f92672">*</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Giai thừa của &#34;</span> <span style="color:#f92672">+</span> n <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; là: &#34;</span> <span style="color:#f92672">+</span> giaithua);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> Calculation().<span style="color:#a6e22e">fact</span>(5); <span style="color:#75715e">// đối tượng annonymous</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Kết quả:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Giai thừa của 5 là: 120
+</span></span></code></pre></div><h2 id="6-sự-khác-nhau-giữa-lớp-và-đối-tượng">6. Sự khác nhau giữa lớp và đối tượng</h2>
+<table>
+  <thead>
+      <tr>
+          <th>No</th>
+          <th>Đối tượng</th>
+          <th>Lớp</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Thể hiện của 1 lớp</td>
+          <td>Khuôn mẫu để tạo đối tượng</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Thực thể trong thế giới thực (bút, xe đạp…)</td>
+          <td>Nhóm các đối tượng tương tự</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Thực thể vật lý</td>
+          <td>Thực thể logic</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Tạo bằng <code>new</code> (ví dụ: <code>Student s1 = new Student();</code>)</td>
+          <td>Khai báo bằng <code>class</code> (ví dụ: <code>class Student {}</code>)</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Có thể tạo nhiều lần</td>
+          <td>Được khai báo 1 lần duy nhất</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>Được cấp bộ nhớ khi tạo</td>
+          <td>Không cấp bộ nhớ khi khai báo</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>Nhiều cách tạo: <code>new</code>, <code>newInstance()</code>, <code>clone()</code>, <code>factory</code>, <code>deserialization</code></td>
+          <td>Chỉ một cách: sử dụng <code>class</code></td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+<div class="flex flex-row justify-around my-2">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <a
+      href="/blog/js-conditionals-optimization/"
+      title="Tối ưu câu lệnh điều kiện dễ đọc hơn trong JavaScript"
+    >
+      <i class="nav-menu fas fa-chevron-circle-left"></i>
+    </a>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <a
+      href="/blog/js-primitive-vs-reference/"
+      title="Kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu"
+    >
+      <i class="nav-menu fas fa-chevron-circle-right"></i>
+    </a>
+    
+  </h3>
+</div>
+
+
+    </main>
+    
+    <footer class="text-sm text-center border-t border-gray-500  py-6 ">
+  <p class="markdownify">© 2025 Lê Bảo Duy</p>
+  <p >
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </p>
+
+  
+</footer>
+
+    
+  </body>
+</html>

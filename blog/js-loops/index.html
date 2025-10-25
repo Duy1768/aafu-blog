@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi-vn" class="m-auto  dark "><head>
+  
+  <title>Các loại vòng lặp trong JavaScript - Lê Bảo Duy - Trang cá nhân</title>
+  
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta name="theme-color" content="" />
+  <meta name="description" content="Trang cá nhân &amp; dự án của Lê Bảo Duy" />
+  <meta name="author" content="Lê Bảo Duy" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="/main.min.861eea9874973f8444be483793e0ca0c2702acf41be407874da62d3de1e663a7.css"
+    integrity="sha256-hh7qmHSXP4REvkg3k&#43;DKDCcCrPQb5AeHTaYtPeHmY6c="
+    crossorigin="anonymous"
+  />
+   
+
+  <style>
+     
+    html {
+      touch-action: manipulation;
+      scroll-behavior: smooth;
+    }
+
+    .panel {
+      max-height: 0;
+      transition: 0.3s ease-out;
+    }
+
+    .profile-photo-container {
+      img {
+        max-width: 100%;
+      }
+    }
+     
+    .pagefind-ui__search-input {
+      color: black;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .pagefind-ui__search-clear {
+      display: none;
+    }
+    .dark .pagefind-ui__search-input {
+      color: white;
+      background-color: #322d2d;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .dark .pagefind-ui__search-input::placeholder {
+      color: #8f8f8f;
+    }
+    .chevron {
+      transition: 300ms linear rotate;
+    }
+    .active > .chevron {
+      transform: rotate(90deg);
+    }
+  </style>
+
+  <script>
+    const expandAccordion = (elem) => {
+      const allPanels = Array.from(document.querySelectorAll(".panel"));
+      const allAccordion = Array.from(document.querySelectorAll(".accordion"));
+
+      if (!elem.parentElement.classList.contains("active")) {
+        allAccordion.forEach((acc) => {
+          acc.classList.remove("active");
+        });
+        elem.parentElement.classList.add("active");
+        allPanels.forEach(function (elem) {
+          elem.style.maxHeight = null;
+        });
+        let activePanel = elem.parentElement.nextElementSibling;
+        if (
+          activePanel.id != "skill-panel" &&
+          document.querySelector("#skill-panel")
+        ) {
+          let skillBars = Array.from(
+            document.querySelectorAll("#skill-percent")
+          );
+          skillBars.forEach((elem) => {
+            elem.style.width = "0";
+          });
+        }
+        activePanel.style.maxHeight = activePanel.scrollHeight + "px";
+      }
+    };
+  </script>
+
+  <script>
+    let html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+
+    const setTheme = (theme) => {
+      html.classList.remove("light");
+      if (theme === "dark") {
+        html.classList.add("dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        html.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
+      }
+      fixThemeToggleIcon(theme);
+    };
+
+    const fixThemeToggleIcon = (theme) => {
+      let themeToggle = document.querySelector(".theme-toggle");
+      if (themeToggle) {
+        if (theme === "dark") {
+          themeToggle.classList.remove("fa-moon");
+          themeToggle.classList.add("fa-sun");
+        } else {
+          themeToggle.classList.remove("fa-sun");
+          themeToggle.classList.add("fa-moon");
+        }
+      }
+    };
+
+    if (theme == null) {
+      if (html.classList.contains("dark")) {
+        theme = "dark";
+      } else if (html.classList.contains("light")) {
+        theme = "light";
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        if (prefersDark) {
+          theme = "dark";
+        } else {
+          theme = "light";
+        }
+      }
+    }
+
+    setTheme(theme);
+
+    const toggleTheme = () => {
+      html.classList.contains("dark") ? setTheme("light") : setTheme("dark");
+    };
+
+    window.onload = () => {
+      fixThemeToggleIcon(theme);
+
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="h-screen p-2 m-auto max-w-4xl flex flex-col">
+    
+    <header
+  class="nav flex flex-row row py-2 mb-6 w-full border-b border-gray-700 dark:border-gray-300 justify-between"
+>
+  <div>
+    <a class="nav-menu-item" href="/">Home</a>
+    <a class="nav-menu-item" href="/blog">Blog</a>
+  </div>
+  <div>
+    <a class="mr-4" href="/search">
+      <i class="fas fa-search"></i>
+    </a>
+    <i
+      class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+      onclick="toggleTheme()"
+    ></i>
+  </div>
+</header>
+
+
+
+    
+    <main class="grow">
+
+<div class="prose prose-stone dark:prose-invert max-w-none">
+<div class="mb-3">
+  <h1 class="top-h1">Các loại vòng lặp trong JavaScript</h1>
+  <p class="mb-1">October 24, 2025</p>
+  <p>&mdash;</p>
+</div>
+<div class="content">
+  <h1 id="các-loại-vòng-lặp-trong-javascript">Các loại vòng lặp trong JavaScript</h1>
+<p>Vòng lặp là một thành phần quan trọng trong lập trình, giúp lặp lại các thao tác nhiều lần. Trong JavaScript, bạn có nhiều loại vòng lặp khác nhau từ cơ bản đến nâng cao. Bài viết này sẽ giới thiệu chi tiết từng loại và ví dụ minh họa.</p>
+<hr>
+<h2 id="1-for-loop">1. For Loop</h2>
+<p>Vòng lặp <code>for</code> phổ biến nhất trong nhiều ngôn ngữ lập trình, dễ dàng kiểm soát biến đếm, điều kiện và bước nhảy.</p>
+<p><strong>Cú pháp:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ([<span style="color:#a6e22e">initialization</span>]; [<span style="color:#a6e22e">condition</span>]; [<span style="color:#66d9ef">final</span><span style="color:#f92672">-</span><span style="color:#a6e22e">expression</span>]) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// block of code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 10; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  console.<span style="color:#a6e22e">log</span>(i);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>0 1 2 ... 9
+</span></span></code></pre></div><h2 id="2-while-loop">2. While Loop</h2>
+<p>while thực thi khối lệnh khi điều kiện còn đúng.</p>
+<p><strong>Cú pháp:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (condition) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// block of code</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>0 1 2 ... 9
+</span></span></code></pre></div><h2 id="3-dowhile">3. Do&hellip;While</h2>
+<p>Khác với while, do&hellip;while luôn thực thi ít nhất một lần.</p>
+<p><strong>Cú pháp:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// block of code</span>
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">while</span> (condition);
+</span></span></code></pre></div><p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">12</span>);
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span>
+</span></span></code></pre></div><h2 id="4-foreach">4. forEach()</h2>
+<p>forEach lặp qua từng phần tử của mảng, thực thi function với mỗi phần tử.</p>
+<p><strong>Cú pháp:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">arrayName</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">currentValue</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// function body
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
+</span></span></code></pre></div><p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#e6db74">&#34;hi&#34;</span>, , {}];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;arr[&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;] is &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">item</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">0</span>] <span style="color:#a6e22e">is</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">1</span>] <span style="color:#a6e22e">is</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">2</span>] <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">hi</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">4</span>] <span style="color:#a6e22e">is</span> [<span style="color:#a6e22e">object</span> Object]
+</span></span></code></pre></div><h2 id="5-map">5. Map</h2>
+<p>map tương tự forEach, nhưng tạo ra mảng mới dựa trên function.</p>
+<p><strong>Cú pháp:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newArray</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldArray</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">currentValue</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">modifiedValue</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">15</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doubles</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">num</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">x</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">doubles</span>);
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>]
+</span></span></code></pre></div><h2 id="6-forin">6. For&hellip;in</h2>
+<p>Dùng để lặp qua thuộc tính của object. Có thể dùng với mảng, nhưng không đảm bảo thứ tự.</p>
+<p><strong>Cú pháp:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">object</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">object</span>.<span style="color:#a6e22e">hasOwnProperty</span>(<span style="color:#a6e22e">key</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// code block
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>};    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">prop</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">obj</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;obj.&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">prop</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">obj</span>[<span style="color:#a6e22e">prop</span>]);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">a</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">b</span><span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">c</span><span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><h2 id="7-forof">7. For&hellip;of</h2>
+<p>Ra mắt trong ES6, dùng để lặp các iterable như Array, String, Map, Set.</p>
+<p>Cú pháp:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">value</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">iterable</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// block of code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Ví dụ với String:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;paul&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">char</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">p</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">u</span> <span style="color:#a6e22e">l</span>
+</span></span></code></pre></div><p>Ví dụ với Map:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">itobj</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Map</span>([[<span style="color:#e6db74">&#39;x&#39;</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#e6db74">&#39;y&#39;</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#e6db74">&#39;z&#39;</span>, <span style="color:#ae81ff">2</span>]]);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> [<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>] <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">itobj</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Kết quả:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div>
+</div>
+</div>
+<div class="flex flex-row justify-around my-2">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <a
+      href="/blog/java-cau-lenh-dieu-kien/"
+      title="Câu lệnh điều kiện trong Java"
+    >
+      <i class="nav-menu fas fa-chevron-circle-left"></i>
+    </a>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <a
+      href="/blog/java-bien-va-kieu-du-lieu/"
+      title="Biến và kiểu dữ liệu trong Java"
+    >
+      <i class="nav-menu fas fa-chevron-circle-right"></i>
+    </a>
+    
+  </h3>
+</div>
+
+
+    </main>
+    
+    <footer class="text-sm text-center border-t border-gray-500  py-6 ">
+  <p class="markdownify">© 2025 Lê Bảo Duy</p>
+  <p >
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </p>
+
+  
+</footer>
+
+    
+  </body>
+</html>

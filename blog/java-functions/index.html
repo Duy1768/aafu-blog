@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="vi-vn" class="m-auto  dark "><head>
+  
+  <title>Hàm trong Java - Lê Bảo Duy - Trang cá nhân</title>
+  
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta name="theme-color" content="" />
+  <meta name="description" content="Trang cá nhân &amp; dự án của Lê Bảo Duy" />
+  <meta name="author" content="Lê Bảo Duy" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="/main.min.861eea9874973f8444be483793e0ca0c2702acf41be407874da62d3de1e663a7.css"
+    integrity="sha256-hh7qmHSXP4REvkg3k&#43;DKDCcCrPQb5AeHTaYtPeHmY6c="
+    crossorigin="anonymous"
+  />
+   
+
+  <style>
+     
+    html {
+      touch-action: manipulation;
+      scroll-behavior: smooth;
+    }
+
+    .panel {
+      max-height: 0;
+      transition: 0.3s ease-out;
+    }
+
+    .profile-photo-container {
+      img {
+        max-width: 100%;
+      }
+    }
+     
+    .pagefind-ui__search-input {
+      color: black;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .pagefind-ui__search-clear {
+      display: none;
+    }
+    .dark .pagefind-ui__search-input {
+      color: white;
+      background-color: #322d2d;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .dark .pagefind-ui__search-input::placeholder {
+      color: #8f8f8f;
+    }
+    .chevron {
+      transition: 300ms linear rotate;
+    }
+    .active > .chevron {
+      transform: rotate(90deg);
+    }
+  </style>
+
+  <script>
+    const expandAccordion = (elem) => {
+      const allPanels = Array.from(document.querySelectorAll(".panel"));
+      const allAccordion = Array.from(document.querySelectorAll(".accordion"));
+
+      if (!elem.parentElement.classList.contains("active")) {
+        allAccordion.forEach((acc) => {
+          acc.classList.remove("active");
+        });
+        elem.parentElement.classList.add("active");
+        allPanels.forEach(function (elem) {
+          elem.style.maxHeight = null;
+        });
+        let activePanel = elem.parentElement.nextElementSibling;
+        if (
+          activePanel.id != "skill-panel" &&
+          document.querySelector("#skill-panel")
+        ) {
+          let skillBars = Array.from(
+            document.querySelectorAll("#skill-percent")
+          );
+          skillBars.forEach((elem) => {
+            elem.style.width = "0";
+          });
+        }
+        activePanel.style.maxHeight = activePanel.scrollHeight + "px";
+      }
+    };
+  </script>
+
+  <script>
+    let html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+
+    const setTheme = (theme) => {
+      html.classList.remove("light");
+      if (theme === "dark") {
+        html.classList.add("dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        html.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
+      }
+      fixThemeToggleIcon(theme);
+    };
+
+    const fixThemeToggleIcon = (theme) => {
+      let themeToggle = document.querySelector(".theme-toggle");
+      if (themeToggle) {
+        if (theme === "dark") {
+          themeToggle.classList.remove("fa-moon");
+          themeToggle.classList.add("fa-sun");
+        } else {
+          themeToggle.classList.remove("fa-sun");
+          themeToggle.classList.add("fa-moon");
+        }
+      }
+    };
+
+    if (theme == null) {
+      if (html.classList.contains("dark")) {
+        theme = "dark";
+      } else if (html.classList.contains("light")) {
+        theme = "light";
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        if (prefersDark) {
+          theme = "dark";
+        } else {
+          theme = "light";
+        }
+      }
+    }
+
+    setTheme(theme);
+
+    const toggleTheme = () => {
+      html.classList.contains("dark") ? setTheme("light") : setTheme("dark");
+    };
+
+    window.onload = () => {
+      fixThemeToggleIcon(theme);
+
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+<body class="h-screen p-2 m-auto max-w-4xl flex flex-col">
+    
+    <header
+  class="nav flex flex-row row py-2 mb-6 w-full border-b border-gray-700 dark:border-gray-300 justify-between"
+>
+  <div>
+    <a class="nav-menu-item" href="/">Home</a>
+    <a class="nav-menu-item" href="/blog">Blog</a>
+  </div>
+  <div>
+    <a class="mr-4" href="/search">
+      <i class="fas fa-search"></i>
+    </a>
+    <i
+      class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+      onclick="toggleTheme()"
+    ></i>
+  </div>
+</header>
+
+
+
+    
+    <main class="grow">
+
+<div class="prose prose-stone dark:prose-invert max-w-none">
+<div class="mb-3">
+  <h1 class="top-h1">Hàm trong Java</h1>
+  <p class="mb-1">October 24, 2025</p>
+  <p>&mdash;</p>
+</div>
+<div class="content">
+  <h1 id="hàm-trong-java-phần-1">Hàm trong Java (Phần 1)</h1>
+<p>Trong ngôn ngữ lập trình Java, một <strong>hàm (function)</strong> là một khối code chứa một tập hợp các câu lệnh được đặt tên và thực hiện một nhiệm vụ cụ thể. Hàm giúp <strong>tái sử dụng code</strong>, tạo cấu trúc rõ ràng và dễ quản lý trong các ứng dụng phức tạp.</p>
+<hr>
+<h2 id="1-ví-dụ-giới-thiệu-về-hàm">1. Ví dụ giới thiệu về hàm</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorld</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Hàm đơn giản in ra &#34;Hello, world!&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printHello</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello, world!&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Gọi hàm printHello</span>
+</span></span><span style="display:flex;"><span>        printHello();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="trong-ví-dụ-trên">Trong ví dụ trên:</h3>
+<p>Hàm printHello được khai báo với public static void.</p>
+<p>Khi gọi hàm, nó in ra &ldquo;Hello, world!&rdquo;.</p>
+<p>Hàm có thể được gọi từ bất kỳ đâu trong chương trình.</p>
+<h2 id="2-định-nghĩa-một-hàm-trong-java">2. Định nghĩa một hàm trong Java</h2>
+<p>Công thức tổng quát:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span>Quyền truy cập<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Kiểu dữ liệu trả về<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Tên hàm<span style="color:#f92672">]</span>(<span style="color:#f92672">[</span>Danh sách tham số<span style="color:#f92672">]</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Khối lệnh (Body)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">[</span>Các câu lệnh thực thi<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">[</span><span style="color:#66d9ef">return</span> Giá_trị;<span style="color:#f92672">]</span> <span style="color:#75715e">// nếu có</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Các thành phần chính:</p>
+<p>Quyền truy cập: public, private, protected, hoặc không có modifier.</p>
+<p>Kiểu dữ liệu trả về: void nếu không trả về giá trị, hoặc kiểu dữ liệu cụ thể.</p>
+<p>Tên hàm: tên hàm theo quy tắc Java.</p>
+<p>Danh sách tham số: kiểu dữ liệu và tên tham số.</p>
+<p>Khối lệnh (Body): logic của hàm.</p>
+<p>Lệnh return: chỉ dùng nếu kiểu trả về không phải void.</p>
+<h3 id="ví-dụ-tính-tổng-hai-số">Ví dụ tính tổng hai số:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">addNumbers</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sum;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="3-gọi-hàm">3. Gọi hàm</h2>
+<p>Trong cùng một lớp:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> addNumbers(5, 3);
+</span></span></code></pre></div><p>Từ một lớp khác (không static):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>OtherClass obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> OtherClass();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> obj.<span style="color:#a6e22e">someMethod</span>(argument1, argument2);
+</span></span></code></pre></div><p>Hàm tĩnh (static):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> MyClass.<span style="color:#a6e22e">staticMethod</span>(argument1, argument2);
+</span></span></code></pre></div><h2 id="4-hàm-void-và-hàm-trả-về-giá-trị">4. Hàm void và hàm trả về giá trị</h2>
+<p>Hàm không trả về (void)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printHello</span>() {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello, World!&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Hàm có giá trị trả về
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="5-ví-dụ-minh-họa">5. Ví dụ minh họa</h2>
+<h3 id="ví-dụ-1-tính-ước-chung-lớn-nhất-gcd-bằng-phương-pháp-euclid">Ví dụ 1: Tính ước chung lớn nhất (GCD) bằng phương pháp Euclid</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GreatestCommonDivisorMethod</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">findGCD</span>(<span style="color:#66d9ef">int</span> num1, <span style="color:#66d9ef">int</span> num2) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (num2 <span style="color:#f92672">==</span> 0) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> num1;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> findGCD(num2, num1 <span style="color:#f92672">%</span> num2);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> number1 <span style="color:#f92672">=</span> 48;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> number2 <span style="color:#f92672">=</span> 18;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> gcd <span style="color:#f92672">=</span> findGCD(number1, number2);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Ước chung lớn nhất của &#34;</span> <span style="color:#f92672">+</span> number1 <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; và &#34;</span> <span style="color:#f92672">+</span> number2 <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; là &#34;</span> <span style="color:#f92672">+</span> gcd);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="ví-dụ-2-tính-tiền-lương-nhân-viên">Ví dụ 2: Tính tiền lương nhân viên</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EmployeeSalaryCalculator</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">calculateMonthlySalary</span>(<span style="color:#66d9ef">double</span> hourlyWage, <span style="color:#66d9ef">int</span> hoursWorked) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> hoursInMonth <span style="color:#f92672">=</span> 160;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> monthlySalary <span style="color:#f92672">=</span> hourlyWage <span style="color:#f92672">*</span> hoursWorked;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (hoursWorked <span style="color:#f92672">&gt;</span> hoursInMonth) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> overtimeHours <span style="color:#f92672">=</span> hoursWorked <span style="color:#f92672">-</span> hoursInMonth;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">double</span> overtimePay <span style="color:#f92672">=</span> overtimeHours <span style="color:#f92672">*</span> (hourlyWage <span style="color:#f92672">*</span> 1.<span style="color:#a6e22e">5</span>);
+</span></span><span style="display:flex;"><span>            monthlySalary <span style="color:#f92672">+=</span> overtimePay;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> monthlySalary;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        String employeeName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Nguyen Van A&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> hourlyWage <span style="color:#f92672">=</span> 12.<span style="color:#a6e22e">5</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> hoursWorked <span style="color:#f92672">=</span> 176;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> monthlySalary <span style="color:#f92672">=</span> calculateMonthlySalary(hourlyWage, hoursWorked);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Nhân viên: &#34;</span> <span style="color:#f92672">+</span> employeeName);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Tiền lương hàng tháng: $&#34;</span> <span style="color:#f92672">+</span> monthlySalary);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="ví-dụ-3-thuật-toán-kruskal--tìm-cây-bao-trùm-tối-thiểu">Ví dụ 3: Thuật toán Kruskal – Tìm cây bao trùm tối thiểu</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Edge</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> source, destination, weight;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Edge</span>(<span style="color:#66d9ef">int</span> source, <span style="color:#66d9ef">int</span> destination, <span style="color:#66d9ef">int</span> weight) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">source</span> <span style="color:#f92672">=</span> source;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">destination</span> <span style="color:#f92672">=</span> destination;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">weight</span> <span style="color:#f92672">=</span> weight;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Graph</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> vertices;
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Edge<span style="color:#f92672">&gt;</span> edges;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Graph</span>(<span style="color:#66d9ef">int</span> vertices) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">vertices</span> <span style="color:#f92672">=</span> vertices;
+</span></span><span style="display:flex;"><span>        edges <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addEdge</span>(<span style="color:#66d9ef">int</span> source, <span style="color:#66d9ef">int</span> destination, <span style="color:#66d9ef">int</span> weight) {
+</span></span><span style="display:flex;"><span>        edges.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">new</span> Edge(source, destination, weight));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Edge<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">kruskalMST</span>() {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Edge<span style="color:#f92672">&gt;</span> mst <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        edges.<span style="color:#a6e22e">sort</span>(Comparator.<span style="color:#a6e22e">comparingInt</span>(e <span style="color:#f92672">-&gt;</span> e.<span style="color:#a6e22e">weight</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> parent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>vertices<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> vertices; i<span style="color:#f92672">++</span>) parent<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> edgeCount <span style="color:#f92672">=</span> 0, i <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (edgeCount <span style="color:#f92672">&lt;</span> vertices <span style="color:#f92672">-</span> 1) {
+</span></span><span style="display:flex;"><span>            Edge current <span style="color:#f92672">=</span> edges.<span style="color:#a6e22e">get</span>(i);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> srcParent <span style="color:#f92672">=</span> find(parent, current.<span style="color:#a6e22e">source</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> destParent <span style="color:#f92672">=</span> find(parent, current.<span style="color:#a6e22e">destination</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (srcParent <span style="color:#f92672">!=</span> destParent) {
+</span></span><span style="display:flex;"><span>                mst.<span style="color:#a6e22e">add</span>(current);
+</span></span><span style="display:flex;"><span>                union(parent, srcParent, destParent);
+</span></span><span style="display:flex;"><span>                edgeCount<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> mst;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> parent, <span style="color:#66d9ef">int</span> vertex) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (parent<span style="color:#f92672">[</span>vertex<span style="color:#f92672">]</span> <span style="color:#f92672">!=</span> vertex) <span style="color:#66d9ef">return</span> find(parent, parent<span style="color:#f92672">[</span>vertex<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> vertex;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">union</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> parent, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y) {
+</span></span><span style="display:flex;"><span>        parent<span style="color:#f92672">[</span>find(parent, y)<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> find(parent, x);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KruskalExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Graph graph <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Graph(6);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(0, 1, 4);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(0, 2, 4);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(1, 2, 2);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(1, 3, 3);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(1, 4, 7);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(2, 3, 5);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(2, 4, 7);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(3, 4, 2);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(3, 5, 5);
+</span></span><span style="display:flex;"><span>        graph.<span style="color:#a6e22e">addEdge</span>(4, 5, 2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Edge<span style="color:#f92672">&gt;</span> mst <span style="color:#f92672">=</span> graph.<span style="color:#a6e22e">kruskalMST</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (Edge edge : mst) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(edge.<span style="color:#a6e22e">source</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; - &#34;</span> <span style="color:#f92672">+</span> edge.<span style="color:#a6e22e">destination</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; : &#34;</span> <span style="color:#f92672">+</span> edge.<span style="color:#a6e22e">weight</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</div>
+</div>
+<div class="flex flex-row justify-around my-2">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <a
+      href="/blog/js-functions/"
+      title="Hàm trong JavaScript: Định nghĩa, Tham số và Giá trị trả về"
+    >
+      <i class="nav-menu fas fa-chevron-circle-left"></i>
+    </a>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <a
+      href="/blog/java-cau-lenh-dieu-kien/"
+      title="Câu lệnh điều kiện trong Java"
+    >
+      <i class="nav-menu fas fa-chevron-circle-right"></i>
+    </a>
+    
+  </h3>
+</div>
+
+
+    </main>
+    
+    <footer class="text-sm text-center border-t border-gray-500  py-6 ">
+  <p class="markdownify">© 2025 Lê Bảo Duy</p>
+  <p >
+    <i>
+      <a href="https://github.com/darshanbaral/aafu">
+        aafu
+      </a>
+    </i>
+    by
+    <a href="https://www.darshanbaral.com/">
+      darshan
+    </a>
+  </p>
+
+  
+</footer>
+
+    
+  </body>
+</html>
