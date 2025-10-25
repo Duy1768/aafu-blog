@@ -232,6 +232,9 @@
   .my-2 {
     margin-block: calc(var(--spacing) * 2) !important;
   }
+  .my-3 {
+    margin-block: calc(var(--spacing) * 3) !important;
+  }
   .my-6 {
     margin-block: calc(var(--spacing) * 6) !important;
   }
@@ -722,6 +725,9 @@
   .h-screen {
     height: 100vh !important;
   }
+  .max-h-\[400px\] {
+    max-height: 400px !important;
+  }
   .w-100 {
     width: calc(var(--spacing) * 100) !important;
   }
@@ -811,6 +817,9 @@
   .border-black {
     border-color: var(--color-black) !important;
   }
+  .border-gray-300 {
+    border-color: var(--color-gray-300) !important;
+  }
   .border-gray-500 {
     border-color: var(--color-gray-500) !important;
   }
@@ -828,6 +837,9 @@
   }
   .bg-white {
     background-color: var(--color-white) !important;
+  }
+  .object-contain {
+    object-fit: contain !important;
   }
   .object-cover {
     object-fit: cover !important;
@@ -920,6 +932,10 @@
   }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)) !important;
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow) !important;
+  }
+  .shadow-md {
+    --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1)) !important;
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow) !important;
   }
   .drop-shadow-md {
@@ -1049,6 +1065,11 @@
   .dark\:border-gray-300 {
     &:is(.dark *) {
       border-color: var(--color-gray-300) !important;
+    }
+  }
+  .dark\:border-gray-700 {
+    &:is(.dark *) {
+      border-color: var(--color-gray-700) !important;
     }
   }
   .dark\:prose-invert {
